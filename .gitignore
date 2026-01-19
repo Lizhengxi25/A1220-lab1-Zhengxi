@@ -1,0 +1,5 @@
+.venv
+receipts/
+docs/
+COMMAND_API_OPENAI.txt
+__pycache__
