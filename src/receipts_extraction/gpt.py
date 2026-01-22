@@ -25,6 +25,21 @@ CATEGORIES = ["Meals", "Transport", "Lodging", "Office Supplies",
 list[str]: categories that "category" field can contain in receipt images
 """
 
+def ai_output_processor(raw_output: dict) -> dict:
+    """Re-process the dictionary extracted from ChatGPT
+
+    Remove the “$” symbol if present in amount and convert the parsed value to float
+
+    Args:
+        raw_output: original output dict without being processed
+
+    Returns:
+        A dict that removes the “$” symbol and converts the parsed value to float.
+    """
+    raw_output["amount"] = raw_output["amount"].replace("$", "")
+    raw_output["amount"] = float(raw_output["amount"])
+    return raw_output
+
 def extract_receipt_info(image_b64: str) -> dict:
     """Fetches texts from a image.
 
@@ -79,5 +94,4 @@ The output must be valid JSON.
             }
         ]
     )
-    return json.loads(response.choices[0].message.content)
-
+    return ai_output_processor(json.loads(response.choices[0].message.content))
