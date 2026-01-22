@@ -1,5 +1,7 @@
 # Receipts Information Extraction System
 
+[Github link](https://github.com/Lizhengxi25/A1220-lab1-Zhengxi)
+
 ### Functionality
 
 This information extraction system extracts **ONLY** the following fields from the receipt image:
